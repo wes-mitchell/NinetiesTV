@@ -101,7 +101,8 @@ namespace NinetiesTV
         // 10. Return all shows except for the lowest rated show.
         static List<Show> AllButWorst(List<Show> shows)
         {
-            throw new NotImplementedException();
+            double lowestRated = shows.Min(s => s.ImdbRating); // Baywatch
+            return shows.Where(s => s.ImdbRating != lowestRated).OrderBy(s => s.Name).ToList();
         }
 
         // 11. Return the names of the shows that had fewer than 100 episodes.
