@@ -141,13 +141,15 @@ namespace NinetiesTV
         static Show EndedFirstAfterTheMillennium(List<Show> shows)
         {
             return shows.OrderBy(s => s.EndYear).FirstOrDefault(s => s.EndYear >= 2000);
+            // Boy Meets World?
         }
 
         // 17. Order the shows by rating (highest first) 
         //     and return the first show with genre of drama.
         static Show BestDrama(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.ImdbRating).First(s => s.Genres.Contains("Drama"));
+            // Twin Peaks
         }
 
         // 18. Return all dramas except for the highest rated.
