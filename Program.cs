@@ -121,7 +121,7 @@ namespace NinetiesTV
         // 13. Return the names of the comedy shows sorted by IMDB rating.
         static List<string> ComediesByRating(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.Genres.Contains("Comedy")).OrderBy(s => s.ImdbRating).Select(s => s.Name).ToList();
         }
 
         // 14. Return the shows with more than one genre ordered by their starting year.
