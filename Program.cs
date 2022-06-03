@@ -101,8 +101,7 @@ namespace NinetiesTV
         // 10. Return all shows except for the lowest rated show.
         static List<Show> AllButWorst(List<Show> shows)
         {
-            double lowestRated = shows.Min(s => s.ImdbRating); // Baywatch
-            return shows.Where(s => s.ImdbRating != lowestRated).OrderBy(s => s.Name).ToList();
+           return shows.OrderBy(s => s.ImdbRating).Skip(1).ToList();
         }
 
         // 11. Return the names of the shows that had fewer than 100 episodes.
@@ -175,8 +174,9 @@ namespace NinetiesTV
         // 21. Return the show with the most words in the name.
         static Show WordieastName(List<Show> shows)
         {
-            return shows.OrderByDescending(s => s.Name.Length).First();
+            // return shows.OrderByDescending(s => s.Name.Length).First();
             // Spider Man
+            return shows.OrderByDescending(s => s.Name.Split(" ").Count()).First();
         }
 
         // 22. Return the names of all shows as a single string seperated by a comma and a space.
@@ -188,8 +188,10 @@ namespace NinetiesTV
         // 23. Do the same as above, but put the word "and" between the second-to-last and last show name.
         static string AllNamesWithCommasPlsAnd(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return string.Join(", ", shows.Select(s => s.Name).Take(shows.Count -1)) + " and " + shows.Last().Name;
         }
+
+        
 
 
         /**************************************************************************************************
